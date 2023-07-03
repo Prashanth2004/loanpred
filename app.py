@@ -170,7 +170,7 @@ def get_registrations():
 
 # Route to retrieve prediction data from the database
 @app.route('/predictions')
-def get_predictions():
+def get_predictions(): 
     cursor = db.cursor()
     cursor.execute("SELECT result, COUNT(*) as count FROM details GROUP BY result")
     data = cursor.fetchall()
