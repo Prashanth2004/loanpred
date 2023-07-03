@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .chart-container {
+            margin-top: 30px;
+            width: 900px; /* Increase the width as desired */
+            height: 450px; /* Increase the height as desired */
+        }
+        
+        .container {
+            max-width: 1000px;
+            max-height: fit-content;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Responsive CSS for screens with a maximum width of 600px */
+        @media (max-width: 600px) {
+            .chart-container {
+                width: 100%; /* Adjust as needed for the specific layout */
+                height: auto; /* Adjust as needed for the specific layout */
+                margin-top: 15px; /* Adjust as needed for the specific layout */
+            }
+            
+            .container {
+                max-width: 100%; /* Adjust as needed for the specific layout */
+                padding: 10px; /* Adjust as needed for the specific layout */
+            }
+        }
+        
+        /* Responsive CSS for screens with a maximum width of 768px */
+        @media (max-width: 768px) {
+            .chart-container {
+                width: 100%; /* Adjust as needed for the specific layout */
+                height: 300px; /* Adjust as needed for the specific layout */
+                margin-top: 20px; /* Adjust as needed for the specific layout */
+            }
+            
+            .container {
+                max-width: 768px; /* Adjust as needed for the specific layout */
+                padding: 15px; /* Adjust as needed for the specific layout */
+            }
+        }
+        
+        /* Responsive CSS for screens with a maximum width of 992px */
+        @media (max-width: 992px) {
+            .chart-container {
+                width: 100%; /* Adjust as needed for the specific layout */
+                height: 400px; /* Adjust as needed for the specific layout */
+                margin-top: 25px; /* Adjust as needed for the specific layout */
+            }
+            
+            .container {
+                max-width: 900px; /* Adjust as needed for the specific layout */
+                padding: 20px; /* Adjust as needed for the specific layout */
+            }
+        }
+        
+        /* Responsive CSS for screens with a maximum width of 1200px */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%; /* Adjust as needed for the specific layout */
+                padding: 25px; /* Adjust as needed for the specific layout */
+            }
+        }
+    </style>
+        
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h4><b><i>Welcome, Admin!</i></b></h4>
+                <div class="btn-container">
+                    <button id="registrationsBtn" class="btn btn-primary">Registrations</button>
+                    <button id="predictionsBtn" class="btn btn-primary">Predictions</button>
+                </div>
+                <div id="chartContainer" class="chart-container"></div>
+            </div>
+        </div>
+        <p><a href="/login">Log Out</a></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#registrationsBtn').click(function() {
+                $.ajax({
+                    url: '/registrations',
+                    success: function(data) {
+                        renderLineChart(data, "Registrations");
+                    }
+                });
+            });
+
+            $('#predictionsBtn').click(function() {
+                $.ajax({
+                    url: '/predictions',
+                    success: function(data) {
+                        renderBarChart(data, "Predictions");
+                    }
+                });
+            });
+
+            function renderLineChart(data, title) {
+                var chartData = [];
+                for (var i = 0; i < data.length; i++) {
+                    chartData.push({
+                        x: new Date(data[i][0]),
+                        y: data[i][1]
+                    });
+                }
+
+                chartData.sort(function(a, b) {
+                    return a.x - b.x;
+                });
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: title
+                    }, 
+                    axisX: {
+                        valueFormatString: "DD MMM YYYY"
+                    },
+                    axisY: {
+                        title: "Number of Registrations",
+                        interval: 1 
+                    },
+                    data: [{
+                        type: "line",
+                        dataPoints: chartData
+                    }]
+                });
+
+                chart.render();
+            }
+
+            function renderBarChart(data, title) {
+                var chartData = [];
+                for (var i = 0; i < data.length; i++) {
+                    chartData.push({
+                        label: data[i][0],
+                        y: data[i][1]
+                    });
+                }
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: title
+                    },
+                    axisY: {
+                        title: "Count",
+                        interval: 0.5
+                    },
+                    data: [{
+                        type: "column",
+                        dataPoints: chartData
+                    }]
+                });
+
+                chart.render();
+            }
+        });
+    </script>
+</body>
+</html>

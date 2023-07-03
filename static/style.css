@@ -1,0 +1,93 @@
+/* Default styles */
+
+body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    opacity: 1;
+}
+
+.background-image {
+    opacity: 0.1;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.container h1 {
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.container input[type="submit"] {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container p {
+    margin-top: 20px;
+}
+
+.container a {
+    color: #4CAF50;
+}
+
+
+/* Responsive styles */
+
+/* Breakpoint <= 600px */
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+}
+
+/* Breakpoint <= 768px */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+}
+
+/* Breakpoint <= 992px */
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+}
+
+/* Breakpoint <= 1200px */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+}

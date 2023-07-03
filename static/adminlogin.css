@@ -1,0 +1,81 @@
+.admin-login .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.admin-login .box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-login .box h1 {
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.admin-login .box input[type="text"],
+.admin-login .box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.admin-login .box input[type="submit"] {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-login .box p {
+    margin-top: 20px;
+}
+
+.admin-login .box a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+/* Media Queries for Responsive Design */
+
+/* Up to 600px */
+@media (max-width: 600px) {
+    .admin-login .box {
+        max-width: 90%;
+    }
+}
+
+/* Up to 768px */
+@media (max-width: 768px) {
+    .admin-login .box {
+        max-width: 90%;
+        padding: 10px;
+    }
+}
+
+/* Up to 992px */
+@media (max-width: 992px) {
+    .admin-login .box {
+        max-width: 80%;
+        padding: 10px;
+    }
+}
+
+/* Up to 1200px */
+@media (max-width: 1200px) {
+    .admin-login .box {
+        max-width: 70%;
+        padding: 10px;
+    }
+}
